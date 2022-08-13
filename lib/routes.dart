@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:prueba_tec_leal/ui/screens/detail_screen.dart';
 import 'package:prueba_tec_leal/ui/screens/favorite_screen.dart';
@@ -14,7 +13,7 @@ class Routes {
       case 'splash':
         return MaterialPageRoute(builder: (context) => const SpalshScreen());
       case 'login':
-        return MaterialPageRoute(builder: (context) => const LoginScreen());
+        return MaterialPageRoute(builder: (context) => LoginScreen());
       case 'detail':
         return MaterialPageRoute(builder: (context) => const DetailScreen());
       case 'home':
@@ -26,7 +25,7 @@ class Routes {
       case 'recent':
         return MaterialPageRoute(builder: (context) => const RecentScreen());
       default:
-        return MaterialPageRoute(builder: (context) => const LoginScreen());
+        return MaterialPageRoute(builder: (context) => LoginScreen());
     }
   }
 }

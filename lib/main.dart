@@ -12,8 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => ScreenUtilInit(
       designSize: const Size(375, 812),
-      builder: (context, widget) => const MaterialApp(
+      builder: (context, widget) => MaterialApp(
             debugShowCheckedModeBanner: false,
+            theme: ThemeData(fontFamily: 'Quicksand'),
             onGenerateRoute: Routes.onGenerateRoutes,
             initialRoute: 'splash',
           ));
