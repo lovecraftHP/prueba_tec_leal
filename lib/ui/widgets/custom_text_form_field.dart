@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  final String text;
+  final String title;
   final TextEditingController controller;
   final bool obscure;
+  final Function onChange;
   const CustomTextFormField({
     Key? key,
-    required this.text,
+    required this.title,
     required this.controller,
     this.obscure = false,
+    required this.onChange,
   }) : super(key: key);
 
   @override
@@ -18,10 +20,12 @@ class CustomTextFormField extends StatelessWidget {
         child: TextFormField(
           controller: controller,
           obscureText: obscure,
+          onSaved: (value) => onChange(value),
+          style: const TextStyle(color: Colors.white),
           cursorColor: Colors.white,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
-            labelText: text,
+            labelText: title,
             labelStyle: const TextStyle(
               color: Colors.white,
             ),

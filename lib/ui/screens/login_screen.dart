@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:prueba_tec_leal/core/cubit/login_cubit.dart';
 import 'package:prueba_tec_leal/styles/app_styles.dart';
+import 'package:prueba_tec_leal/ui/widgets/bottom_sheet/login_bottom_sheet.dart';
 
 import '../widgets/custom_button.dart';
 import '../widgets/custom_text_form_field.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final _name = TextEditingController();
+
   final _password = TextEditingController();
+
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    super.dispose();
+    context.read<LoginCubit>().dispose();
+  }
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -36,7 +54,6 @@ class LoginScreen extends StatelessWidget {
                     CustomButton(
                         title: 'Log in',
                         onPress: () {
-                          var radius = const Radius.circular(40);
                           showModalBottomSheet(
                               context: context,
                               shape: RoundedRectangleBorder(
@@ -58,21 +75,107 @@ class LoginScreen extends StatelessWidget {
                                             color: Colors.white,
                                           )),
                                       Form(
-                                          child: Column(
-                                        children: [
-                                          CustomTextFormField(
-                                              text: 'Name', controller: _name),
-                                          CustomTextFormField(
-                                              text: 'Password',
-                                              controller: _password),
-                                          Padding(
-                                            padding: EdgeInsets.only(top: 80.h),
-                                            child: CustomButton(
-                                                title: 'Log in',
-                                                onPress: () {}),
-                                          )
-                                        ],
-                                      ))
+                                          key: _formKey,
+                                          child: BlocConsumer<LoginCubit,
+                                              LoginState>(
+                                            listener: (context, state) {
+                                              if (state is LoginLoading) {
+                                                showDialog(
+                                                    context: context,
+                                                    useSafeArea: true,
+                                                    builder: (context) =>
+                                                        AlertDialog(
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          content: Center(
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              color: AppStyle
+                                                                  .mainColor,
+                                                            ),
+                                                          ),
+                                                        ));
+                                              }
+
+                                              if (state is LoginError) {
+                                                // Navigator.pop(context);
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (builder) =>
+                                                        AlertDialog(
+                                                          actions: [
+                                                            CustomButton(
+                                                              title: 'Cerrar',
+                                                              backgroundColor:
+                                                                  AppStyle
+                                                                      .mainColor,
+                                                              onPress: () {
+                                                                Navigator.pop(
+                                                                  context,
+                                                                );
+                                                                Navigator.pop(
+                                                                  context,
+                                                                );
+                                                              },
+                                                            )
+                                                          ],
+                                                          content: Text(
+                                                              state.message),
+                                                        ));
+                                              }
+                                              if (state is LoginLoaded) {
+                                                Navigator.pop(context);
+                                                Navigator
+                                                    .pushNamedAndRemoveUntil(
+                                                        context,
+                                                        'home',
+                                                        (route) => false);
+                                              }
+                                            },
+                                            builder: (context, state) {
+                                              return Column(
+                                                children: [
+                                                  CustomTextFormField(
+                                                    title: 'Name',
+                                                    controller: context
+                                                        .read<LoginCubit>()
+                                                        .nameController,
+                                                    onChange: (value) {
+                                                      context
+                                                              .read<LoginCubit>()
+                                                              .nameController =
+                                                          value;
+                                                    },
+                                                  ),
+                                                  CustomTextFormField(
+                                                      title: 'Password',
+                                                      controller: context
+                                                          .read<LoginCubit>()
+                                                          .passwordController,
+                                                      onChange: (value) {
+                                                        context
+                                                            .read<LoginCubit>()
+                                                            .passwordController = value;
+                                                      }),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 80.h),
+                                                    child: CustomButton(
+                                                        title: 'Log in',
+                                                        onPress: () {
+                                                          _formKey.currentState!
+                                                              .save();
+                                                          context
+                                                              .read<
+                                                                  LoginCubit>()
+                                                              .login();
+                                                        }),
+                                                  )
+                                                ],
+                                              );
+                                            },
+                                          ))
                                     ]);
                               });
                         }),
