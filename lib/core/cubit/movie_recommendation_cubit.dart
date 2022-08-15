@@ -13,7 +13,9 @@ class MovieRecommendationtCubit extends Cubit<MovieRecommendationState> {
   int get idMovie => _idMovie;
 
   MovieRecommendationtCubit({required this.api})
-      : super(MovieRecommendationInitial());
+      : super(MovieRecommendationInitial()) {
+    getRecommendations();
+  }
 
   void getRecommendations() async {
     emit(MovieRecommendationLoading());

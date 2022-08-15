@@ -35,8 +35,8 @@ class MoviesApi implements MovieRepository {
   @override
   Future<ResultModel> getRecommendationsMovies(int id) async {
     try {
-      var res = await Dio().get(
-          "$_urlBase/$id/recommendations?api_key=$_apiKey&language=en-US&page=1");
+      var res = await Dio()
+          .post("$_urlBase/upcoming?api_key=$_apiKey&language=en-US&page=1");
       return ResultModel.fromJson(res.data);
     } catch (e) {
       throw MovieException(

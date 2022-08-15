@@ -29,7 +29,7 @@ class MovieModel {
       this.title,
       this.video,
       this.voteAverage,
-      this.favorite = false,
+      this.favorite,
       this.voteCount});
 
   MovieModel.fromJson(Map<String, dynamic> json) {
@@ -47,7 +47,7 @@ class MovieModel {
     video = json['video'];
     voteAverage = json['vote_average'];
     voteCount = json['vote_count'];
-    favorite = json['favorite'];
+    favorite = json['favorite'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
