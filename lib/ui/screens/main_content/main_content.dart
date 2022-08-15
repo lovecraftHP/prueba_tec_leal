@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:prueba_tec_leal/core/cubit/movie_recommendation_cubit.dart';
 import 'package:prueba_tec_leal/styles/app_styles.dart';
 import 'package:prueba_tec_leal/ui/screens/main_content/widget/movie_popular_list.dart';
@@ -11,6 +12,15 @@ class MainContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: AppStyle.black,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(FontAwesomeIcons.gear))
+        ],
+      ),
       backgroundColor: AppStyle.black,
       body: CustomScrollView(
         slivers: [

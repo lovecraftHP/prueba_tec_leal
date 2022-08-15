@@ -7,6 +7,7 @@ import 'package:prueba_tec_leal/core/cubit/login_cubit.dart';
 import 'package:prueba_tec_leal/core/cubit/movie_favorite_cubit.dart';
 import 'package:prueba_tec_leal/core/cubit/movie_recommendation_cubit.dart';
 import 'package:prueba_tec_leal/core/cubit/movies_popular_cubit.dart';
+import 'package:prueba_tec_leal/core/cubit/recent_series_cubit.dart';
 import 'package:prueba_tec_leal/routes.dart';
 
 void main() {
@@ -30,7 +31,9 @@ class MyApp extends StatelessWidget {
                   create: (context) => MovieFavoriteCubit()),
               BlocProvider<MovieRecommendationtCubit>(
                   create: (context) =>
-                      MovieRecommendationtCubit(api: MoviesApi()))
+                      MovieRecommendationtCubit(api: MoviesApi())),
+              BlocProvider<RecentSeriesCubit>(
+                  create: (context) => RecentSeriesCubit(api: MoviesApi()))
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,

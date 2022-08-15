@@ -3,9 +3,11 @@ import 'package:prueba_tec_leal/core/api/repository/movie_repository.dart';
 import 'package:prueba_tec_leal/core/exceptions/movie_exception.dart';
 import 'package:prueba_tec_leal/core/models/result_model.dart';
 import 'package:prueba_tec_leal/core/models/movie_detail_model.dart';
+import 'package:prueba_tec_leal/core/models/result_serie.dart';
 
 class MoviesApi implements MovieRepository {
   final _urlBase = "https://api.themoviedb.org/3/movie";
+  final _urlBaseSerie = "https://api.themoviedb.org/3/tv/airing_today";
   final _apiKey = "7232404feac8c4f777411471eff682ad";
   @override
   Future<MovieDetailModel> getDetailsMovies(int id) async {
@@ -42,6 +44,19 @@ class MoviesApi implements MovieRepository {
       throw MovieException(
           message:
               'Ocurrio un error al obtener los datos, Recommendations Movies.');
+    }
+  }
+
+  @override
+  Future<ResultSerie> getRecentSerie() async {
+    try {
+      var res = await Dio()
+          .post("$_urlBaseSerie?api_key=$_apiKey&language=en-US&page=1");
+      // var decodedData = jsonDecode(res.data);
+      return ResultSerie.fromJson(res.data);
+    } catch (e) {
+      throw MovieException(
+          message: 'Ocurrio un error al obtener los datos, Series.');
     }
   }
 }
