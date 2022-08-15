@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:prueba_tec_leal/core/cubit/movie_recommendation_cubit.dart';
 import 'package:prueba_tec_leal/styles/app_styles.dart';
 import 'package:prueba_tec_leal/ui/screens/main_content/widget/movie_popular_list.dart';
+import 'package:prueba_tec_leal/ui/screens/main_content/widget/movie_recommendations.dart';
 import 'package:prueba_tec_leal/ui/widgets/title_text.dart';
 
 class MainContent extends StatelessWidget {
@@ -16,6 +18,24 @@ class MainContent extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate([
               const MoviePopularList(),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10.h),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text(
+                      'See All ',
+                      style:
+                          TextStyle(color: AppStyle.mainColor, fontSize: 17.sp),
+                    ),
+                    Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 17.sp,
+                      color: AppStyle.mainColor,
+                    )
+                  ],
+                ),
+              )
             ]),
           ),
           SliverToBoxAdapter(
@@ -26,7 +46,8 @@ class MainContent extends StatelessWidget {
             ),
           )),
           const TitleText(title: 'Recommendations'),
-          SliverList(delegate: SliverChildListDelegate([]))
+          SliverList(
+              delegate: SliverChildListDelegate([const MovieRecommendations()]))
         ],
       ));
 }

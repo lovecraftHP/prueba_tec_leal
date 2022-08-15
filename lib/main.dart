@@ -28,8 +28,9 @@ class MyApp extends StatelessWidget {
                   create: (context) => MoviesPopularCubit(api: MoviesApi())),
               BlocProvider<MovieFavoriteCubit>(
                   create: (context) => MovieFavoriteCubit()),
-              BlocProvider<MovieRecentCubit>(
-                  create: (context) => MovieRecentCubit(api: MoviesApi()))
+              BlocProvider<MovieRecommendationtCubit>(
+                  create: (context) =>
+                      MovieRecommendationtCubit(api: MoviesApi()))
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
