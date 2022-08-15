@@ -11,7 +11,7 @@ class LoginApi implements LoginRepository {
     var condition2 =
         credentials.username == "pedro" && credentials.password == "123456";
     try {
-      if (condition1) {
+      if (condition1 || condition2) {
         response = true;
       } else {
         response = false;

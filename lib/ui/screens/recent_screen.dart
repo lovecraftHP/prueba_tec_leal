@@ -5,6 +5,8 @@ class RecentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        body: Container(),
+        body: Center(
+          child: Text('recent'),
+        ),
       );
 }

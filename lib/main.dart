@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:prueba_tec_leal/core/api/network/login_api.dart';
+import 'package:prueba_tec_leal/core/api/network/movies_api.dart';
 import 'package:prueba_tec_leal/core/cubit/login_cubit.dart';
+import 'package:prueba_tec_leal/core/cubit/movie_favorite_cubit.dart';
+import 'package:prueba_tec_leal/core/cubit/movie_recommendation_cubit.dart';
+import 'package:prueba_tec_leal/core/cubit/movies_popular_cubit.dart';
 import 'package:prueba_tec_leal/routes.dart';
 
 void main() {
@@ -20,12 +24,21 @@ class MyApp extends StatelessWidget {
               BlocProvider<LoginCubit>(
                 create: (context) => LoginCubit(loginRepository: LoginApi()),
               ),
+              BlocProvider<MoviesPopularCubit>(
+                  create: (context) => MoviesPopularCubit(api: MoviesApi())),
+              BlocProvider<MovieFavoriteCubit>(
+                  create: (context) => MovieFavoriteCubit()),
+              BlocProvider<MovieRecentCubit>(
+                  create: (context) => MovieRecentCubit(api: MoviesApi()))
             ],
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
-              theme: ThemeData(fontFamily: 'Quicksand'),
+              theme: ThemeData(
+                fontFamily: 'Quicksand',
+                brightness: Brightness.dark,
+              ),
               onGenerateRoute: Routes.onGenerateRoutes,
-              initialRoute: 'splash',
+              initialRoute: 'home',
             ),
           ));
 }
