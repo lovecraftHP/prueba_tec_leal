@@ -18,7 +18,12 @@ class MainContent extends StatelessWidget {
         elevation: 0,
         backgroundColor: AppStyle.black,
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(FontAwesomeIcons.gear))
+          IconButton(
+              onPressed: () {
+                Navigator.pushNamedAndRemoveUntil(
+                    context, 'login', (route) => false);
+              },
+              icon: const Icon(FontAwesomeIcons.gear))
         ],
       ),
       backgroundColor: AppStyle.black,

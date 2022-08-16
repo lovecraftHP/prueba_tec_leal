@@ -24,7 +24,11 @@ class RecentScreen extends StatelessWidget {
           backgroundColor: AppStyle.black,
           actions: [
             IconButton(
-                onPressed: () {}, icon: const Icon(FontAwesomeIcons.gear))
+                onPressed: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, 'login', (route) => false);
+                },
+                icon: const Icon(FontAwesomeIcons.gear))
           ],
         ),
         backgroundColor: AppStyle.black,
