@@ -4,8 +4,6 @@ import 'package:prueba_tec_leal/core/enums/posters_sizes.dart';
 import 'package:prueba_tec_leal/core/models/movie_model.dart';
 import 'package:prueba_tec_leal/styles/app_styles.dart';
 import 'package:prueba_tec_leal/ui/screens/main_content/widget/rating_stars.dart';
-import 'package:prueba_tec_leal/ui/widgets/custom_button.dart';
-import 'package:prueba_tec_leal/ui/widgets/title_text.dart';
 
 class MovieDetailItem extends StatelessWidget {
   final MovieModel movie;

@@ -9,6 +9,7 @@ class MoviesApi implements MovieRepository {
   final _urlBase = "https://api.themoviedb.org/3/movie";
   final _urlBaseSerie = "https://api.themoviedb.org/3/tv/airing_today";
   final _apiKey = "7232404feac8c4f777411471eff682ad";
+
   @override
   Future<MovieDetailModel> getDetailsMovies(int id) async {
     try {

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:prueba_tec_leal/core/cubit/login_cubit.dart';
 import 'package:prueba_tec_leal/styles/app_styles.dart';
 import 'package:prueba_tec_leal/ui/widgets/bottom_sheet/login_bottom_sheet.dart';
 
@@ -17,17 +15,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
-  @override
-  void deactivate() {
-    super.deactivate();
-    context.read<LoginCubit>().dispose();
-  }
 
   @override
   Widget build(BuildContext context) => Scaffold(

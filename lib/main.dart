@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:prueba_tec_leal/core/api/network/login_api.dart';
 import 'package:prueba_tec_leal/core/api/network/movies_api.dart';
@@ -8,10 +9,12 @@ import 'package:prueba_tec_leal/core/cubit/movie_favorite_cubit.dart';
 import 'package:prueba_tec_leal/core/cubit/movie_recommendation_cubit.dart';
 import 'package:prueba_tec_leal/core/cubit/movies_popular_cubit.dart';
 import 'package:prueba_tec_leal/core/cubit/recent_series_cubit.dart';
+import 'package:prueba_tec_leal/locator.dart';
 import 'package:prueba_tec_leal/routes.dart';
 
 void main() {
-  runApp(const MyApp());
+  setUp();
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
