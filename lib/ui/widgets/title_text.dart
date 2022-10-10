@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:prueba_tec_leal/styles/app_styles.dart';
 
 class TitleText extends StatelessWidget {
   final String title;
@@ -15,7 +16,7 @@ class TitleText extends StatelessWidget {
       sliver: SliverToBoxAdapter(
         child: Text(
           title,
-          style: TextStyle(fontSize: 30.sp, fontWeight: FontWeight.bold),
+          style: AppStyle.movieTitle4,
         ),
       ),
     );

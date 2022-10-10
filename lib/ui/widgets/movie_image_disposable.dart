@@ -17,8 +17,8 @@ class MovieImageDisposable extends StatelessWidget {
           child: Image.network(image),
         ),
         Positioned(
-            right: 10.w,
-            top: 40.h,
+            right: 20.w,
+            top: 65.h,
             child: InkWell(
               onTap: () => Navigator.pop(context),
               child: Container(
