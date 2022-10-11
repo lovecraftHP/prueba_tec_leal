@@ -16,13 +16,8 @@ class InfoScreen extends ConsumerWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SubtitleWidget(title: 'Story'),
-          Expanded(
-              child: ListView(
-            padding: EdgeInsets.only(top: 10.h),
-            children: [
-              Text(movie.overview!, style: TextStyle(fontSize: 17.sp))
-            ],
-          ))
+          SizedBox(height: 10.h),
+          Text(movie.overview!, style: TextStyle(fontSize: 17.sp)),
         ],
       ),
     );

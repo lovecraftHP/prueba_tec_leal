@@ -21,6 +21,9 @@ class AppStyle {
   static TextStyle movieTitle4 =
       TextStyle(fontSize: 30.sp, fontWeight: FontWeight.bold);
 
+  static TextStyle subsitile1 =
+      TextStyle(fontSize: 15.sp, fontWeight: FontWeight.w700);
+
   //------------------------- TABS STYLE ---------------------------------------
   static TextStyle tabTitle1 =
       TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w800);
